@@ -1,0 +1,21 @@
+{
+    "name": "sample-netlify-website",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "@octokit/core": "^3.5.1",
+      "@octokit/plugin-rest-endpoint-methods": "^5.5.2",
+      "@sgrove/netlify-functions": "^0.7.3-handle-secrets.8"
+    },
+    "devDependencies": {
+      "@octokit/openapi-types": "^9.2.0",
+      "@types/node": "^16.4.8"
+    }
+  }
