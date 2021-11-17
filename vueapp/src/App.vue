@@ -14,7 +14,7 @@ export default {
    const { getSecrets } = require('@netlify/functions')
    var secrets = {};
    console.log("Inside data!");
-   secrets = getSecrets();
+   secrets = await getSecrets();
    return {
      msg: secrets,
    }
