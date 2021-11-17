@@ -1,5 +1,5 @@
 {
-    "name": "sample-netlify-website",
+    "name": "personal-github-analytics",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
@@ -12,7 +12,8 @@
     "dependencies": {
       "@octokit/core": "^3.5.1",
       "@octokit/plugin-rest-endpoint-methods": "^5.5.2",
-      "@sgrove/netlify-functions": "^0.7.3-handle-secrets.8"
+      "@netlify/functions": "^0.7.3-handle-secrets.8",
+      "d3": "^7.1.1"
     },
     "devDependencies": {
       "@octokit/openapi-types": "^9.2.0",
