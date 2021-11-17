@@ -8,7 +8,7 @@ const handler: Handler = async (event, context) => {
   {
     return {
       statusCode: 200,
-      body: JSON.stringify(secrets.spotify.isLoggedIn),
+      body: JSON.stringify({ready: secrets.spotify.isLoggedIn}),
     }
   }
   else
