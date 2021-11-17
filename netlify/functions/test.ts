@@ -1,4 +1,4 @@
-import { Handler, getSecrets, NetlifySecrets } from "@sgrove/netlify-functions";
+import { Handler, getSecrets, NetlifySecrets } from "@netlify/functions";
 
 const handler: Handler = async (event, context) => {
   let secrets: NetlifySecrets = {};

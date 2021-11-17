@@ -12,7 +12,7 @@
     "dependencies": {
       "@octokit/core": "^3.5.1",
       "@octokit/plugin-rest-endpoint-methods": "^5.5.2",
-      "@netlify/functions": "^0.7.3-handle-secrets.8",
+      "@netlify/functions": "^0.9.0",
       "d3": "^7.1.1"
     },
     "devDependencies": {
