@@ -1,5 +1,5 @@
 <template>
-  <Analytics msg="Experimental GitHub Analytics View"/>
+  <Analytics :msg="msg"/>
 </template>
 
 <script>
