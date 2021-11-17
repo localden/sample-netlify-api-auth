@@ -4,7 +4,7 @@
 
 <script>
 import Analytics from './components/Analytics.vue'
-import { Handler, getSecrets, NetlifySecrets } from "@netlify/functions";
+import getSecrets from "@netlify/functions";
 
 
 export default {
