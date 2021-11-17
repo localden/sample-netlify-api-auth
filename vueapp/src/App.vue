@@ -1,15 +1,23 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <Analytics msg="Welcome to Your Vue.js App"/>
+  <Analytics msg="Experimental GitHub Analytics View"/>
 </template>
 
 <script>
 import Analytics from './components/Analytics.vue'
+import { Handler, getSecrets, NetlifySecrets } from "@netlify/functions";
+
 
 export default {
   name: 'App',
   components: {
     Analytics
+  },
+  data () {
+    var secrets = {};
+    secrets = await getSecrets();
+    return {
+      msg: secrets,
+    }
   }
 }
 </script>
