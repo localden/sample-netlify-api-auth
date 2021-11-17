@@ -13,12 +13,12 @@ export default {
     Analytics
   },
   data () {
-    var secrets = {};
-    secrets = await getSecrets();
-    return {
-      msg: secrets,
-    }
-  }
+   var secrets = {};
+   secrets = getSecrets();
+   return {
+     msg: secrets,
+   }
+ }
 }
 </script>
 
