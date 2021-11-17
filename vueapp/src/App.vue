@@ -14,12 +14,14 @@ export default {
    const { getSecrets } = require('@netlify/functions')
    var secrets = {};
    console.log("Inside data!");
+   console.log(secrets);
    secrets = await getSecrets();
    return {
      msg: secrets,
    }
  },
  created() {
+   console.log(process.env);
    console.log("Hello!");
   }
 }
