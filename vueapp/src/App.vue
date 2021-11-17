@@ -4,8 +4,6 @@
 
 <script>
 import Analytics from './components/Analytics.vue'
-import getSecrets from '@netlify/functions'
-
 
 export default {
   name: 'App',
@@ -13,6 +11,7 @@ export default {
     Analytics
   },
   data () {
+   const { getSecrets } = require('@netlify/functions')
    var secrets = {};
    console.log("Inside data!");
    secrets = getSecrets();
