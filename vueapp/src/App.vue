@@ -10,7 +10,7 @@ export default {
   components: {
     Analytics
   },
-  data () {
+  async data () {
    const { getSecrets } = require('@netlify/functions')
    var secrets = {};
    console.log("Inside data!");
