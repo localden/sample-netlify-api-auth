@@ -14,11 +14,15 @@ export default {
   },
   data () {
    var secrets = {};
+   console.log("Inside data!");
    secrets = getSecrets();
    return {
      msg: secrets,
    }
- }
+ },
+ created() {
+   console.log("Hello!");
+  }
 }
 </script>
 
