@@ -65,7 +65,7 @@ export default {
       }
   },
   mounted() {
-    this.getData(this.jsonData());
+    this.getData(this.jsonData);
   },
 };
 </script>
