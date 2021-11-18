@@ -51,17 +51,6 @@ export default {
         .attr('id', 'bars-style')
         .attr('transform', `translate(0, 20)`)
         .call(addRectsWithName, 'Basic styles');
- 
-      svg
-        .append('g')
-        .attr('transform', `translate(0, ${height * 0.3 + 20})`)
-        .call(addRectsWithName, 'Scoped styles')
-        .selectAll('rect')
-      svg
-        .append('g')
-        .attr('id', 'bars-style-sass')
-        .attr('transform', `translate(0, ${height * 0.6 + 20})`)
-        .call(addRectsWithName, 'Sass styles');
       }
   },
   mounted() {
