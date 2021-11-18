@@ -45,9 +45,10 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    standalone: true,
     quiet: false,
-    transpile: [
-      'd3',
-    ]
+    // transpile: [
+    //   'd3',
+    // ]
   }
 }
