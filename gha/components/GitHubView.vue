@@ -65,7 +65,7 @@ export default {
       }
   },
   mounted() {
-    this.methods.getData(this.props.jsonData());
+    getData(this.props.jsonData());
   },
 };
 </script>
