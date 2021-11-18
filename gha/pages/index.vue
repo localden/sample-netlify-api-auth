@@ -15,7 +15,7 @@ export default {
           let secrets: NetlifySecrets = {};
           secrets = await getSecrets();
           return {
-            jsonData: JSON.stringify(secrets),
+            jsonData: JSON.stringify(secrets.spotify?.isLoggedIn),
           }
         } catch (e) {
           context.error(e) // Show the nuxt error page with the thrown error
