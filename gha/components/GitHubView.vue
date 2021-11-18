@@ -3,8 +3,8 @@
   <svg id="gh_contrib" width="500" height="300"></svg>
 </template>
 
-<script lang="ts">
-import * as d3 from "d3"
+<script>
+const d3 = require('d3');
 
 export default {
   props: {
@@ -14,7 +14,7 @@ export default {
     this.methods.getData(this.props.jsonData());
   },
   methods: {
-    getData(jsonContent : string) {
+    getData(jsonContent) {
       var svg = d3.select("#gh_contrib");
       var width = +svg.attr('width');
       var height = +svg.attr('height');
