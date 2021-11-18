@@ -45,6 +45,9 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    quiet: false
+    quiet: false,
+    transpile: [
+      'd3',
+    ]
   }
 }
