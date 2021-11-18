@@ -1,8 +1,7 @@
 <!-- Please remove this file from your project -->
 <template>
   <div>
-    <svg id="gh_contrib" width="500" height="300"></svg>
-    <p>{{ jsonData }}</p>
+    <svg id="gh_contrib" width="800" height="800"></svg>
   </div>
 </template>
 
@@ -19,7 +18,6 @@ export default {
       var width = +svg.attr('width');
       var height = +svg.attr('height');
       var data = JSON.parse(jsonContent)
-      console.log(data);
       var x = d3.scaleBand()
         .rangeRound([0, width]).padding(0.1)
         .domain(data.map(d => d.date));
@@ -38,7 +36,6 @@ export default {
           .data(data)
           .enter()
             .append('rect')
-            // We add attr here
             .attr('x', d => x(d.date))
             .attr('class', d => d.date)
             .attr('y', d =>  y(d.contributionCount))
@@ -58,3 +55,9 @@ export default {
   },
 };
 </script>
+
+<style>
+#bars-style {
+  fill: #dd11ef
+}
+</style>
