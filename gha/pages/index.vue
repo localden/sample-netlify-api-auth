@@ -13,8 +13,9 @@ export default {
       secrets = await getSecrets();
       if (secrets.gitHub) {
         let contributions = await getContributions(secrets.gitHub?.bearerToken)
+        const flattenedArray = [].concat(...contributions.data.viewer.contributionsCollection.contributionCalendar.weeks);
         return {
-          jsonData: JSON.stringify(contributions.data.viewer.contributionsCollection.contributionCalendar.weeks),
+          jsonData: JSON.stringify(flattenedArray),
         };
       } else {
         return {
