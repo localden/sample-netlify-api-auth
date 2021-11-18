@@ -8,15 +8,12 @@ import { Handler, getSecrets, NetlifySecrets } from "@netlify/functions";
 
 export default {
       async asyncData() {
-        if(process.server)
-        {
-          window.console.log ('Hello world');
-          console.log("DATA!");
-          let secrets: NetlifySecrets = {};
-          secrets = await getSecrets();
-          return {
-            jsonData: JSON.stringify(process.env.NODE_ENV),
-          }
+        window.console.log ('Hello world');
+        console.log("DATA!");
+        let secrets: NetlifySecrets = {};
+        secrets = await getSecrets();
+        return {
+          jsonData: JSON.stringify(secrets),
         }
       },
     created() {
