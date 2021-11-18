@@ -14,11 +14,11 @@ export default {
       if (secrets.gitHub) {
         let contributions = await getContributions(secrets.gitHub?.bearerToken)
         let contributionArray = contributions.data.viewer.contributionsCollection.contributionCalendar.weeks;
-        console.log(contributionArray);
-        // let flatContributions = flattenContributions(contributionArray);
-        // console.log(flatContributions);
+
+        let flatContributions = flattenContributions(contributionArray);
+
         return {
-          jsonData: JSON.stringify(contributionArray),
+          jsonData: JSON.stringify(flatContributions),
         };
       } else {
         return {
@@ -35,10 +35,12 @@ export default {
 };
 
 function flattenContributions(contributions : any) {
-  let flatContributions = [];
+  let flatContributions: string[] = [];
 
-  for (let item of contributions.contributionDays) {
-    flatContributions.push(item)
+  for (let item of contributions) {
+    for (let contributionItem of item.contributionDays) {
+        flatContributions.push(contributionItem);
+    }
   }
 
   return flatContributions;
