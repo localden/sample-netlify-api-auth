@@ -15,7 +15,7 @@ export default {
           if (secrets.gitHub)
           {
             return {
-              jsonData: JSON.stringify(secrets.github?.isLoggedIn),
+              jsonData: JSON.stringify(secrets.gitHub?.isLoggedIn),
             }
           }
           else
