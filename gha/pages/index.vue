@@ -3,22 +3,29 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { Handler, getSecrets, NetlifySecrets } from "@netlify/functions";
+import { getSecrets, NetlifySecrets } from "@netlify/functions";
 import {Context} from '@nuxt/types';
 
 export default {
       async asyncData(context : Context) {
         try
         {
-          console.log("DATA!");
           let secrets: NetlifySecrets = {};
           secrets = await getSecrets();
-          return {
-            jsonData: JSON.stringify(secrets.spotify?.isLoggedIn),
+          if (secrets.gitHub)
+          {
+            return {
+              jsonData: JSON.stringify(secrets.github?.isLoggedIn),
+            }
+          }
+          else
+          {
+            return {
+              jsonData: {error: "No GitHub token available."}
+            }
           }
         } catch (e) {
-          context.error(e) // Show the nuxt error page with the thrown error
+          context.error(e)
         }
       },
     created() {
