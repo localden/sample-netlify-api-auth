@@ -45,19 +45,24 @@ export default {
             .attr('height', d => y.range()[0] - y(d.contributionCount))
       }
 
-      svg
-        .append("g")
+      // X axis
+      var x = d3.scaleBand()
+        .range([ 0, width ])
+        .domain(data.map(function(d) { return d.date; }))
+        .padding(0.2);
+      svg.append("g")
         .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x));
+        .call(d3.axisBottom(x))
+        .selectAll("text")
+          .attr("transform", "translate(-10,0)rotate(-45)")
+          .style("text-anchor", "end");
 
-      svg
-        .append("text")   
-        .attr('class', "axis-label")          
-        .attr("transform",
-              "translate(" + (width/2) + " ," + 
-                            (height + margin.top + 20) + ")")
-        .style("text-anchor", "middle")
-        .text("Date");
+      // Add Y axis
+      var y = d3.scaleLinear()
+        .domain([0, 100])
+        .range([ height, 0]);
+      svg.append("g")
+        .call(d3.axisLeft(y));
 
       svg
         .append('g')
