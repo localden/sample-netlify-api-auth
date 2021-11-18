@@ -32,14 +32,9 @@ export default {
   mounted() {
     this.getData();
   },
-  data() {
-    return {
-      loadedData: {}
-    }
-  },
   methods: {
-    async getData() {
-      let data = await d3.json(this.props.jsonData);
+    getData() {
+      let data = d3.json(this.jsonData);
 
       // X axis: scale and draw:
       var x = d3.scaleLinear()
@@ -75,8 +70,6 @@ export default {
             .attr("width", function(d) { return x(d.x1) - x(d.x0) -1 ; })
             .attr("height", function(d) { return height - y(d.length); })
             .style("fill", "#69b3a2")
-
-      this.loadedData = data;
     }
   }
 };
