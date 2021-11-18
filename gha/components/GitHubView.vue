@@ -1,6 +1,6 @@
 <!-- Please remove this file from your project -->
 <template>
-  <div id="gh_contrib">
+  <div id="ghcontrib">
   </div>
 </template>
 
@@ -21,13 +21,15 @@ export default {
 
       // append the svg object to the body of the page
       var svg = d3
-        .select("#gh_contrib")
+        .select("#ghcontrib")
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+      console.log(svg);
+      
       // X axis
       var x = d3
         .scaleBand()
@@ -38,6 +40,7 @@ export default {
           })
         )
         .padding(0.2);
+
       svg
         .append("g")
         .attr("transform", "translate(0," + height + ")")
