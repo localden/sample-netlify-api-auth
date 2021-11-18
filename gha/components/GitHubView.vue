@@ -32,8 +32,7 @@ export default {
           .attr("transform",
                 "translate(" + margin.left + "," + margin.top + ")");
                 
-      d3.json(jsonContent)
-        .then((data) => {
+      d3.json(jsonContent, function(error, data) {  
           console.log(data)
           // data.forEach(function(d) {                              
           //     d.date = d.date;                         
@@ -70,9 +69,6 @@ export default {
           //     .attr("height", function(d) { return height - y(d.contributionCount); })
           //     .attr("fill", "#69b3a2")
         })
-        .catch((err) => {
-            // Handle err
-        });
     }
   }
 };
