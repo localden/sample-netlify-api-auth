@@ -34,6 +34,11 @@ export default {
                 
       d3.json(jsonContent , function(data) {
 
+      data.forEach(function(d) {                              
+          d.date = d.date;                         
+          d.contributionCount = +d.contributionCount;                                 
+      });
+
       // X axis
       var x = d3.scaleBand()
         .range([ 0, width ])
