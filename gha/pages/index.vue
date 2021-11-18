@@ -16,7 +16,8 @@ import { Handler, getSecrets, NetlifySecrets } from "@netlify/functions";
 // }
 
 export default {
-      async data() {
+      async asyncData() {
+        console.log("DATA!");
         let secrets: NetlifySecrets = {};
         secrets = await getSecrets();
         return {
@@ -24,7 +25,7 @@ export default {
         }
       },
     created() {
-        console.log("Created!")
+        console.log("Created!");
     }
   }
 </script>
