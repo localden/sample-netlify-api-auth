@@ -13,9 +13,6 @@ export default {
   props: {
     jsonData: String,
   },
-  mounted() {
-    this.methods.getData(this.props.jsonData());
-  },
   methods: {
     getData(jsonContent) {
       var svg = d3.select("#gh_contrib");
@@ -66,6 +63,9 @@ export default {
         .attr('transform', `translate(0, ${height * 0.6 + 20})`)
         .call(addRectsWithName, 'Sass styles');
       }
-  }
+  },
+  mounted() {
+    this.methods.getData(this.props.jsonData());
+  },
 };
 </script>
