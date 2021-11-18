@@ -1,24 +1,30 @@
 <template>
-  <GitHubView :state="state" />
+  <GitHubView :jsonData="jsonData" />
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import GitHubView from "../components/GitHubView.vue"
-import { getSecrets, NetlifySecrets } from '@netlify/functions'
+import { Handler, getSecrets, NetlifySecrets } from "@netlify/functions";
+
+// export default Vue.extend({})
+// export default {
+//   watch: {
+//     repositoryList(newValue) {
+//       this.$store.commit("setRespositoryList", newValue)
+//     }
+//   }
+// }
 
 export default {
-  name: 'App',
-  components: {
-    GitHubView
-  },
-  async data () {
-   let secrets: NetlifySecrets = {};
-   secrets = await getSecrets();
-
-   return {
-     state: secrets,
-   }
- }
-}
+      async data() {
+        let secrets: NetlifySecrets = {};
+        secrets = await getSecrets();
+        return {
+          jsonData: JSON.stringify(secrets),
+        }
+      },
+    created() {
+        console.log("Created!")
+    }
+  }
 </script>
