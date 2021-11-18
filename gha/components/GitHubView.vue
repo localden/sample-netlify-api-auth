@@ -46,12 +46,6 @@ export default {
       }
 
       svg
-        .append('g')
-        .attr('id', 'bars-style')
-        .attr('transform', `translate(0, 20)`)
-        .call(addRectsWithName, 'GitHub Contributions');
-
-      svg
         .append("g")
         .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(x));
@@ -63,6 +57,12 @@ export default {
                             (height + margin.top + 20) + ")")
         .style("text-anchor", "middle")
         .text("Date");
+        
+      svg
+        .append('g')
+        .attr('id', 'bars-style')
+        .attr('transform', `translate(0, 20)`)
+        .call(addRectsWithName, 'GitHub Contributions');
       }
       
   },
