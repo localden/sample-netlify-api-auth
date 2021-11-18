@@ -11,7 +11,6 @@ export default {
       async asyncData(context : Context) {
         try
         {
-          window.console.log ('Hello world');
           console.log("DATA!");
           let secrets: NetlifySecrets = {};
           secrets = await getSecrets();
@@ -23,7 +22,6 @@ export default {
         }
       },
     created() {
-        window.console.log ('Hello world 2');
         console.log("Created!");
     }
   }
