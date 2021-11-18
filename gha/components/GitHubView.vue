@@ -51,13 +51,14 @@ export default {
         .call(d3.axisBottom(x));
 
       svg
-        .append("text")             
+        .append("text")   
+        .attr('class', "axis-label")          
         .attr("transform",
               "translate(" + (width/2) + " ," + 
                             (height + margin.top + 20) + ")")
         .style("text-anchor", "middle")
         .text("Date");
-        
+
       svg
         .append('g')
         .attr('id', 'bars-style')
@@ -75,5 +76,9 @@ export default {
 <style>
 #bars-style {
   fill: #dd11ef
+}
+
+.axis-label {
+  fill: #000;
 }
 </style>
