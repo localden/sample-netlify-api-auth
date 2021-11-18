@@ -6,25 +6,19 @@
 import Vue from 'vue'
 import { Handler, getSecrets, NetlifySecrets } from "@netlify/functions";
 
-// export default Vue.extend({})
-// export default {
-//   watch: {
-//     repositoryList(newValue) {
-//       this.$store.commit("setRespositoryList", newValue)
-//     }
-//   }
-// }
-
 export default {
       async asyncData() {
+        window.console.log ('Hello world');
         console.log("DATA!");
         let secrets: NetlifySecrets = {};
         secrets = await getSecrets();
         return {
-          jsonData: JSON.stringify(secrets),
+          // jsonData: JSON.stringify(secrets),
+          jsonData: JSON.stringify(process.env),
         }
       },
     created() {
+        window.console.log ('Hello world 2');
         console.log("Created!");
     }
   }
