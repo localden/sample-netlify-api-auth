@@ -30,11 +30,11 @@ export default {
     jsonData: String,
   },
   mounted() {
-    this.getData();
+    this.methods.getData(this.props.jsonData);
   },
   methods: {
-    getData() {
-      let data = d3.json(this.jsonData);
+    getData(jsonContent) {
+      let data = d3.json(jsonContent);
 
       // X axis: scale and draw:
       var x = d3.scaleLinear()
