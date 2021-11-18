@@ -1,7 +1,6 @@
 <!-- Please remove this file from your project -->
 <template>
-  <div id="ghcontrib">
-  </div>
+  <div id="ghcontrib"></div>
 </template>
 
 <script>
@@ -14,14 +13,14 @@ export default {
   methods: {
     getData(jsonContent) {
       var data = JSON.parse(jsonContent);
+      console.log("PARSED!");
 
       var margin = { top: 30, right: 30, bottom: 70, left: 60 },
         width = 460 - margin.left - margin.right,
         height = 400 - margin.top - margin.bottom;
 
       // append the svg object to the body of the page
-      var svg = d3
-        .select("#ghcontrib")
+      var svg = d3.select("#ghcontrib")
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -29,7 +28,7 @@ export default {
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
       console.log(svg);
-      
+
       // X axis
       var x = d3
         .scaleBand()
