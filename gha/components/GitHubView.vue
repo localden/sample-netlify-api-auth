@@ -14,6 +14,8 @@ export default {
   },
   methods: {
     getData(jsonContent) {
+      var margin = {top: 30, right: 30, bottom: 70, left: 60},
+      
       var svg = d3.select("#gh_contrib");
       var width = +svg.attr('width');
       var height = +svg.attr('height');
