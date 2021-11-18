@@ -24,7 +24,7 @@ export default {
           height = 400 - margin.top - margin.bottom;
 
       // append the svg object to the body of the page
-      var svg = d3.select("#my_dataviz")
+      var svg = d3.select("#gh_contributions")
         .append("svg")
           .attr("width", width + margin.left + margin.right)
           .attr("height", height + margin.top + margin.bottom)
@@ -32,7 +32,7 @@ export default {
           .attr("transform",
                 "translate(" + margin.left + "," + margin.top + ")");
                 
-      let data = d3.json(jsonContent);
+      d3.json(jsonContent , function(data) {
 
       // X axis
       var x = d3.scaleBand()
@@ -63,6 +63,7 @@ export default {
           .attr("width", x.bandwidth())
           .attr("height", function(d) { return height - y(d.contributionCount); })
           .attr("fill", "#69b3a2")
+      });
     }
   }
 };
