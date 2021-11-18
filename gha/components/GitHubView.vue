@@ -47,8 +47,22 @@ export default {
         .append('g')
         .attr('id', 'bars-style')
         .attr('transform', `translate(0, 20)`)
-        .call(addRectsWithName, 'Basic styles');
+        .call(addRectsWithName, 'GitHub Contributions');
+
+      svg
+        .append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+
+      svg
+        .append("text")             
+        .attr("transform",
+              "translate(" + (width/2) + " ," + 
+                            (height + margin.top + 20) + ")")
+        .style("text-anchor", "middle")
+        .text("Date");
       }
+      
   },
   mounted() {
     this.getData(this.jsonData);
