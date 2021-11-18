@@ -15,10 +15,10 @@ export default {
         let contributions = await getContributions(secrets.gitHub?.bearerToken)
         let contributionArray = contributions.data.viewer.contributionsCollection.contributionCalendar.weeks;
         console.log(contributionArray);
-        let flatContributions = flattenContributions(contributionArray);
-        console.log(flatContributions);
+        // let flatContributions = flattenContributions(contributionArray);
+        // console.log(flatContributions);
         return {
-          jsonData: JSON.stringify(flatContributions),
+          jsonData: JSON.stringify(contributionArray),
         };
       } else {
         return {
