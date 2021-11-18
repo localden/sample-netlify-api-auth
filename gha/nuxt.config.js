@@ -45,14 +45,6 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    quiet: false,
-    terser: {
-      // https://github.com/terser/terser#compress-options
-      terserOptions: {
-        compress: {
-          drop_console: false
-        }
-      }
-    }
+    quiet: false
   }
 }
