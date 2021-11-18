@@ -1,12 +1,11 @@
 <!-- Please remove this file from your project -->
 <template>
-  <div>
-    <svg id="gh_contrib" width="800" height="800"></svg>
+  <div id="gh_contrib">
   </div>
 </template>
 
 <script>
-const d3 = require('d3');
+const d3 = require("d3");
 
 export default {
   props: {
@@ -14,73 +13,70 @@ export default {
   },
   methods: {
     getData(jsonContent) {
-      var margin = {top: 30, right: 30, bottom: 70, left: 60};
+      var data = JSON.parse(jsonContent);
 
-      var svg = d3.select("#gh_contrib");
-      var width = +svg.attr('width');
-      var height = +svg.attr('height');
-      var data = JSON.parse(jsonContent)
-      var x = d3.scaleBand()
-        .rangeRound([0, width]).padding(0.1)
-        .domain(data.map(d => d.date));
-      var y = d3.scaleLinear()
-        .rangeRound([height * 0.3 - 20, 0])
-        .domain([0, d3.max(data, d => d.contributionCount)])
+      var margin = { top: 30, right: 30, bottom: 70, left: 60 },
+        width = 460 - margin.left - margin.right,
+        height = 400 - margin.top - margin.bottom;
 
-      function addRectsWithName(elem, name) {
-        elem
-          .append('text')
-          .text(name)
-          .attr('x', width / 2)
-          .attr('y', 5)
-          .attr('text-anchor', 'middle');
-        elem.selectAll('rect')
-          .data(data)
-          .enter()
-            .append('rect')
-            .attr('x', d => x(d.date))
-            .attr('class', d => d.date)
-            .attr('y', d =>  y(d.contributionCount))
-            .attr('width', x.bandwidth())
-            .attr('height', d => y.range()[0] - y(d.contributionCount))
-      }
+      // append the svg object to the body of the page
+      var svg = d3
+        .select("#my_dataviz")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
       // X axis
-      var x = d3.scaleBand()
-        .range([ 0, width ])
-        .domain(data.map(function(d) { return d.date; }))
+      var x = d3
+        .scaleBand()
+        .range([0, width])
+        .domain(
+          data.map(function (d) {
+            return d.date;
+          })
+        )
         .padding(0.2);
-      svg.append("g")
+      svg
+        .append("g")
         .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(x))
         .selectAll("text")
-          .attr("transform", "translate(-10,0)rotate(-45)")
-          .style("text-anchor", "end");
+        .attr("transform", "translate(-10,0)rotate(-45)")
+        .style("text-anchor", "end");
 
       // Add Y axis
-      var y = d3.scaleLinear()
-        .domain([0, 100])
-        .range([ height, 0]);
-      svg.append("g")
-        .call(d3.axisLeft(y));
+      var y = d3.scaleLinear().domain([0, 100]).range([height, 0]);
+      svg.append("g").call(d3.axisLeft(y));
 
       svg
-        .append('g')
-        .attr('id', 'bars-style')
-        .attr('transform', `translate(0, 20)`)
-        .call(addRectsWithName, 'GitHub Contributions');
-      }
-      
-  },
-  mounted() {
-    this.getData(this.jsonData);
+        .selectAll("bars-style")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("x", function (d) {
+          return x(d.date);
+        })
+        .attr("y", function (d) {
+          return y(d.contributionCount);
+        })
+        .attr("width", x.bandwidth())
+        .attr("height", function (d) {
+          return height - y(d.contributionCount);
+        })
+        .attr("fill", "#69b3a2");
+    },
+    mounted() {
+      this.getData(this.jsonData);
+    },
   },
 };
 </script>
 
 <style>
 #bars-style {
-  fill: #dd11ef
+  fill: #dd11ef;
 }
 
 .axis-label {
