@@ -14,7 +14,7 @@ export default {
     jsonData: String,
   },
   mounted() {
-    this.methods.getData(this.props.jsonData.getValue());
+    this.methods.getData(this.props.jsonData());
   },
   methods: {
     getData(jsonContent : string) {
