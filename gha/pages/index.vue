@@ -5,9 +5,10 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Handler, getSecrets, NetlifySecrets } from "@netlify/functions";
+import {Context} from '@nuxt/types';
 
 export default {
-      async asyncData(context) {
+      async asyncData(context : Context) {
         try
         {
           window.console.log ('Hello world');
