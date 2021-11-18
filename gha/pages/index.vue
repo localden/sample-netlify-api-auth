@@ -36,7 +36,7 @@ async function getContributions(token: string | null) {
   };
   const body = {
     query:
-      "query {viewer {contributionsCollection {contributionCalendar {totalContributions}}}}",
+      "query {viewer {contributionsCollection { contributionCalendar { totalContributions weeks { contributionDays { contributionCount date }}}}}}",
   };
   const response = await fetch("https://api.github.com/graphql", {
     method: "POST",
