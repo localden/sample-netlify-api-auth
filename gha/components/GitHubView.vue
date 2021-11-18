@@ -1,6 +1,6 @@
 <!-- Please remove this file from your project -->
 <template>
-  <svg width="500" height="300"></svg>
+  <svg id="gh_contrib" width="500" height="300"></svg>
 </template>
 
 <script lang="ts">
@@ -11,11 +11,11 @@ export default {
     jsonData: String,
   },
   mounted() {
-    this.methods.getData(this.props.jsonData(), this.$el);
+    this.methods.getData(this.props.jsonData());
   },
   methods: {
-    getData(jsonContent : string, element : any) {
-      var svg = d3.select(this.$el);
+    getData(jsonContent : string) {
+      var svg = d3.select("#gh_contrib");
       var width = +svg.attr('width');
       var height = +svg.attr('height');
       var data = JSON.parse(jsonContent)
@@ -48,14 +48,12 @@ export default {
         .attr('id', 'bars-style')
         .attr('transform', `translate(0, 20)`)
         .call(addRectsWithName, 'Basic styles');
-      // vue loader will substitute data attribute for styles
-      var STYLE_MODULE_NAME = this.$el.attributes[0].name;
+ 
       svg
         .append('g')
         .attr('transform', `translate(0, ${height * 0.3 + 20})`)
         .call(addRectsWithName, 'Scoped styles')
         .selectAll('rect')
-        .attr(STYLE_MODULE_NAME, '')
       svg
         .append('g')
         .attr('id', 'bars-style-sass')
