@@ -30,7 +30,7 @@ export default {
   },
 };
 
-async function getContributions(token: string) {
+async function getContributions(token: string | null) {
   const headers = {
     Authorization: `bearer ${token}`,
   };
