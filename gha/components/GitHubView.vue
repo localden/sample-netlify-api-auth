@@ -1,6 +1,9 @@
 <!-- Please remove this file from your project -->
 <template>
-  <svg id="gh_contrib" width="500" height="300"></svg>
+  <div>
+    <svg id="gh_contrib" width="500" height="300"></svg>
+    <p>{{ jsonData }}</p>
+  </div>
 </template>
 
 <script>
@@ -19,12 +22,14 @@ export default {
       var width = +svg.attr('width');
       var height = +svg.attr('height');
       var data = JSON.parse(jsonContent)
+      console.log(data);
       var x = d3.scaleBand()
         .rangeRound([0, width]).padding(0.1)
         .domain(data.map(d => d.date));
       var y = d3.scaleLinear()
         .rangeRound([height * 0.3 - 20, 0])
         .domain([0, d3.max(data, d => d.contributionCount)])
+
       function addRectsWithName(elem, name) {
         elem
           .append('text')
@@ -43,6 +48,7 @@ export default {
             .attr('width', x.bandwidth())
             .attr('height', d => y.range()[0] - y(d.contributionCount))
       }
+
       svg
         .append('g')
         .attr('id', 'bars-style')
