@@ -13,9 +13,10 @@ export default {
       secrets = await getSecrets();
       if (secrets.gitHub) {
         let contributions = await getContributions(secrets.gitHub?.bearerToken)
-        const flattenedArray = [].concat(...contributions.data.viewer.contributionsCollection.contributionCalendar.weeks.contributionDays);
+        let contributionArray = contributions.data.viewer.contributionsCollection.contributionCalendar.weeks;
+        let flatContributions = flattenContributions(contributionArray);
         return {
-          jsonData: JSON.stringify(flattenedArray),
+          jsonData: JSON.stringify(flatContributions),
         };
       } else {
         return {
@@ -30,6 +31,16 @@ export default {
     console.log("Created!");
   },
 };
+
+function flattenContributions(contributions : any) {
+  let flatContributions = [];
+
+  for (let item of contributions.contributionDays) {
+    flatContributions.push(item)
+  }
+
+  return flatContributions;
+}
 
 async function getContributions(token: string | null) {
   const headers = {
