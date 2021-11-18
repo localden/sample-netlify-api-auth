@@ -14,7 +14,7 @@ export default {
       if (secrets.gitHub) {
         let contributions = await getContributions(secrets.gitHub?.bearerToken)
         return {
-          jsonData: JSON.stringify(contributions),
+          jsonData: JSON.stringify(contributions.data.viewer.contributionsCollection),
         };
       } else {
         return {
