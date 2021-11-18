@@ -69,7 +69,7 @@ export default {
           //     .attr("width", x.bandwidth())
           //     .attr("height", function(d) { return height - y(d.contributionCount); })
           //     .attr("fill", "#69b3a2")
-          //     })
+        })
         .catch((err) => {
             // Handle err
         });
