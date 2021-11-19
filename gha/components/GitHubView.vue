@@ -13,6 +13,11 @@ export default {
   props: {
     jsonData: String,
   },
+  mounted() {
+      console.log("Mounted!")
+      this.getData(this.jsonData);
+      console.log(this.jsonData);
+  },
   methods: {
     getData(jsonContent) {
       var data = JSON.parse(jsonContent);
@@ -88,12 +93,7 @@ export default {
         .attr("height", function (d) {
           return height - y(d.contributionCount);
         });
-    },
-    mounted() {
-      console.log("Mounted!")
-      this.getData(this.jsonData);
-      console.log(this.jsonData);
-    },
+    }
   },
 };
 </script>
