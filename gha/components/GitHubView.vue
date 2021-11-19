@@ -23,76 +23,43 @@ export default {
       var data = JSON.parse(jsonContent);
       console.log("PARSED!");
 
-      // set the dimensions and margins of the graph
-      const margin = { top: 30, right: 30, bottom: 70, left: 60 },
-        width = 800 - margin.left - margin.right,
-        height = 800 - margin.top - margin.bottom;
+      const margin = {top: 30, right: 30, bottom: 70, left: 60},
+      width = 460 - margin.left - margin.right,
+      height = 400 - margin.top - margin.bottom;
 
       // append the svg object to the body of the page
-      const svg = d3.select("#ghcontrib");
-
-      var x = d3.scale.ordinal().rangeRoundBands([0, width], 0.05);
-
-      var y = d3.scale.linear().range([height, 0]);
-
-      var xAxis = d3.svg
-        .axis()
-        .scale(x)
-        .orient("bottom")
-        .tickFormat(d3.time.format("%Y-%m"));
-
-      var yAxis = d3.svg.axis().scale(y).orient("left").ticks(10);
-
-      x.domain(
-        data.map(function (d) {
-          return d.date;
-        })
-      );
-      y.domain([
-        0,
-        d3.max(data, function (d) {
-          return d.contributionCount;
-        }),
-      ]);
-
-      svg
+      const svg = d3.select("#ghcontrib")
         .append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis)
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+        // X axis
+      const x = d3.scaleBand()
+        .range([ 0, width ])
+        .domain(data.map(d => d.date))
+        .padding(0.2);
+      svg.append("g")
+        .attr("transform", `translate(0, ${height})`)
+        .call(d3.axisBottom(x))
         .selectAll("text")
-        .style("text-anchor", "end")
-        .attr("dx", "-.8em")
-        .attr("dy", "-.55em")
-        .attr("transform", "rotate(-90)");
+          .attr("transform", "translate(-10,0)rotate(-45)")
+          .style("text-anchor", "end");
 
-      svg
-        .append("g")
-        .attr("class", "y axis")
-        .call(yAxis)
-        .append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 6)
-        .attr("dy", ".71em")
-        .style("text-anchor", "end")
-        .text("Value ($)");
+      // Add Y axis
+      const y = d3.scaleLinear()
+        .domain([0, 13000])
+        .range([ height, 0]);
+      svg.append("g")
+        .call(d3.axisLeft(y));
 
-      svg
-        .selectAll("bar")
+      // Bars
+      svg.selectAll("mybar")
         .data(data)
-        .enter()
-        .append("rect")
-        .style("fill", "steelblue")
-        .attr("x", function (d) {
-          return x(d.date);
-        })
-        .attr("width", x.rangeBand())
-        .attr("y", function (d) {
-          return y(d.contributionCount);
-        })
-        .attr("height", function (d) {
-          return height - y(d.contributionCount);
-        });
+        .join("rect")
+          .attr("x", d => x(d.date))
+          .attr("y", d => y(d.contributionCount))
+          .attr("width", x.bandwidth())
+          .attr("height", d => height - y(d.contributionCount))
+          .attr("fill", "#69b3a2")
     }
   },
 };
