@@ -24,8 +24,9 @@ export default {
         height = 800 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
-    const svg = d3.select("#ghcontrib")
-      .append("g")
+    const svg = d3.select("#ghcontrib");
+
+    svg.append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`);
 
       console.log(svg);
