@@ -1,6 +1,6 @@
 <!-- Please remove this file from your project -->
 <template>
-  <div id="ghcontrib"></div>
+  <svg id="ghcontrib"></svg>
 </template>
 
 <script>
@@ -21,7 +21,6 @@ export default {
 
       // append the svg object to the body of the page
       var svg = d3.select("#ghcontrib")
-        .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
