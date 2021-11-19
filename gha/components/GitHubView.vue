@@ -1,8 +1,7 @@
 <!-- Please remove this file from your project -->
 <template>
   <div>
-    <svg id="ghcontrib" width="1080" height="1080"></svg>
-    <p>{{ jsonData }}</p>
+    <svg id="ghcontrib" width="600" height="600"></svg>
   </div>
 </template>
 
@@ -14,18 +13,15 @@ export default {
     jsonData: String,
   },
   mounted() {
-      console.log("Mounted!")
       this.getData(this.jsonData);
-      console.log(this.jsonData);
   },
   methods: {
     getData(jsonContent) {
       var data = JSON.parse(jsonContent);
-      console.log("PARSED!");
 
       const margin = {top: 30, right: 30, bottom: 70, left: 60},
-      width = 1080 - margin.left - margin.right,
-      height = 1080 - margin.top - margin.bottom;
+      width = 600 - margin.left - margin.right,
+      height = 600 - margin.top - margin.bottom;
 
       // append the svg object to the body of the page
       const svg = d3.select("#ghcontrib")
@@ -64,13 +60,3 @@ export default {
   },
 };
 </script>
-
-<style>
-#bars-style {
-  fill: #dd11ef;
-}
-
-.axis-label {
-  fill: #000;
-}
-</style>
