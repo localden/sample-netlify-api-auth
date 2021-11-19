@@ -1,7 +1,7 @@
 <!-- Please remove this file from your project -->
 <template>
   <div>
-    <svg id="ghcontrib" width="800" height="800"></svg>
+    <svg id="ghcontrib" width="900" height="900"></svg>
     <p>{{ jsonData }}</p>
   </div>
 </template>
@@ -24,8 +24,8 @@ export default {
       console.log("PARSED!");
 
       const margin = {top: 30, right: 30, bottom: 70, left: 60},
-      width = 460 - margin.left - margin.right,
-      height = 400 - margin.top - margin.bottom;
+      width = 900 - margin.left - margin.right,
+      height = 900 - margin.top - margin.bottom;
 
       // append the svg object to the body of the page
       const svg = d3.select("#ghcontrib")
@@ -46,7 +46,7 @@ export default {
 
       // Add Y axis
       const y = d3.scaleLinear()
-        .domain([0, 13000])
+        .domain([0, 100])
         .range([ height, 0]);
       svg.append("g")
         .call(d3.axisLeft(y));
