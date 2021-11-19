@@ -26,40 +26,51 @@ export default {
     // append the svg object to the body of the page
     const svg = d3.select("#ghcontrib");
 
+    var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+
+    var y = d3.scale.linear().range([height, 0]);
+
+    var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("bottom")
+        .tickFormat(d3.time.format("%Y-%m"));
+
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left")
+        .ticks(10);
+
+    x.domain(data.map(function(d) { return d.date; }));
+    y.domain([0, d3.max(data, function(d) { return d.contributionCount; })]);
+
     svg.append("g")
-      .attr("transform", `translate(${margin.left},${margin.top})`);
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis)
+      .selectAll("text")
+        .style("text-anchor", "end")
+        .attr("dx", "-.8em")
+        .attr("dy", "-.55em")
+        .attr("transform", "rotate(-90)" );
 
-      console.log(svg);
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis)
+      .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Value ($)");
 
-      // X axis
-      const x = d3.scaleBand()
-        .range([ 0, width ])
-        .domain(data.map(d => d.date))
-        .padding(0.2);
-
-      svg.append("g")
-        .attr("transform", `translate(0, ${height})`)
-        .call(d3.axisBottom(x))
-        .selectAll("text")
-          .attr("transform", "translate(-10,0)rotate(-45)")
-          .style("text-anchor", "end");
-
-      // Add Y axis
-      const y = d3.scaleLinear()
-        .domain([0, 13000])
-        .range([ height, 0]);
-      svg.append("g")
-        .call(d3.axisLeft(y));
-
-      // Bars
-      svg.selectAll("mybar")
+    svg.selectAll("bar")
         .data(data)
-        .join("rect")
-          .attr("x", d => x(d.date))
-          .attr("y", d => y(d.contributionCount))
-          .attr("width", x.bandwidth())
-          .attr("height", d => height - y(d.contributionCount))
-          .attr("fill", "#69b3a2")
+      .enter().append("rect")
+        .style("fill", "steelblue")
+        .attr("x", function(d) { return x(d.date); })
+        .attr("width", x.rangeBand())
+        .attr("y", function(d) { return y(d.contributionCount); })
+        .attr("height", function(d) { return height - y(d.contributionCount); });
 
     },
     mounted() {
