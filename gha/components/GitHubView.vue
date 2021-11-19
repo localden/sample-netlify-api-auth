@@ -36,7 +36,7 @@ export default {
       const x = d3.scaleBand()
         .range([ 0, width ])
         .domain(data.map(d => d.date))
-        .padding(1);
+        .padding(0.2);
       svg.append("g")
         .attr("transform", `translate(0, ${height})`)
         .call(d3.axisBottom(x))
