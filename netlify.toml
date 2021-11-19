@@ -1,4 +1,4 @@
 [build]
   base = "gha/"
-  publish = "gha/dist"
+  publish = "dist"
   command = "nuxt generate"
